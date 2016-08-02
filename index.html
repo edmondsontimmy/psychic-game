@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script type="text/javascript" href="assets/javascript/game.js"></script>
+</head>
+<body>
+<header>The Psychic Game</header>
+
+<div id="game">
+<p>Guess What Letter I'm Thinking Of!</p>
+<p>Wins<span id="wins"></span></p>
+<p>Losses<span id="losses"></span></p>
+<p>Guesses Left:<p>
+<p>Your Guesses So Far</p>
+</div>
+<script type="text/javascript">
+
+	var options = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	var wins = 0;
+	var losses = 0;
+	var guessesLeft = 10;
+
+	function subtract(guessesLeft){
+
+			console.log(this.guessesLeft)
+			
+			this.guessesLeft = this.guessesLeft - 1;
+			
+			console.log(this.guessesLeft);
+		}
+
+	function reWriteStates(){
+
+			console.log(this.guessesLeft);
+		}
+
+document.onkeyup = function(event) {
+
+	
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+	console.log(userGuess);
+
+	
+	var computerGuess = options[Math.floor(Math.random()*options.length)];
+
+	
+	console.log(computerGuess);
+
+	
+
+	console.log("The Computer Guessed: " + computerGuess);
+
+	if (userGuess == computerGuess) {
+		console.log("Win!");
+		wins ++;
+	}
+
+	else if (userGuess != computerGuess) {
+       	console.log("Wrong try again!")
+        adder();
+        reWriteStates();
+    }
+    else {
+    	console.log("You Lose!")
+    	losses ++;
+    }
+
+document.getElementById("wins").innerHTML= wins;
+document.getElementById("losses").innerHTML= losses;
+document.getElementById("guessesLeft").innerHTML= guessesLeft;
+
+}
+</script>
+
+<footer> &copy; Timothy Edmonson 2016 </footer>
+</body>
+</html>
