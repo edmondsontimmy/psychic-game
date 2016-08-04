@@ -10,71 +10,92 @@
 <body>
 <header>The Psychic Game</header>
 
+<img src="https://cdn.powerofpositivity.com/wp-content/uploads/2015/05/psychic-ability.jpg">
+
 <div id="game">
 <p>Guess What Letter I'm Thinking Of!</p>
-<p>Wins<span id="wins"></span></p>
-<p>Losses<span id="losses"></span></p>
-<p>Guesses Left:<p>
-<p>Your Guesses So Far</p>
+<p>Wins:<span id="wins"></span></p>
+<p>Losses:<span id="losses"></span></p>
+<p>Guesses Left: <span id="guessesLeft"></span><p>
+<p>Your Guesses So Far:<span id="userGuess"></span></p>
 </div>
 <script type="text/javascript">
 
-	var options = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-	var wins = 0;
-	var losses = 0;
-	var guessesLeft = 10;
+//Variables
 
-	function subtract(guessesLeft){
+  var options = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  var wins = 0;
+  var losses = 0;
+  var guessesLeft = 10;
+  var lettersGuessed = userGuess;
 
-			console.log(this.guessesLeft)
-			
-			this.guessesLeft = this.guessesLeft - 1;
-			
-			console.log(this.guessesLeft);
-		}
+  //Functions
 
-	function reWriteStates(){
+  function subtract(guessesLeft){
 
-			console.log(this.guessesLeft);
-		}
+      this.guessesLeft = this.guessesLeft - 1;
+      
+      console.log(this.guessesLeft);
 
-document.onkeyup = function(event) {
+  }
+  
+  function reWriteStats(){
+      guessesLeft = 10;
+  }
 
-	
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+  function gameOver(){
+    while (guessesLeft = 0){
+        alert("Game Over!")
+        losses ++;
+        reWriteStats();
+        }
+  }
 
-	console.log(userGuess);
+  //Game event
 
-	
-	var computerGuess = options[Math.floor(Math.random()*options.length)];
+	document.onkeyup = function(event) {
 
-	
-	console.log(computerGuess);
+  
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-	
+  console.log(userGuess);
 
-	console.log("The Computer Guessed: " + computerGuess);
+  
+  var computerGuess = options[Math.floor(Math.random()*options.length)];
 
-	if (userGuess == computerGuess) {
-		console.log("Win!");
-		wins ++;
-	}
+  
+  console.log(computerGuess);
 
-	else if (userGuess != computerGuess) {
-       	console.log("Wrong try again!")
-        adder();
-        reWriteStates();
-    }
-    else {
-    	console.log("You Lose!")
-    	losses ++;
-    }
+  
+  console.log("The Computer Guessed: " + computerGuess);
+
+
+
+  //Console Log of guesses made
+  if (userGuess == computerGuess) {
+    console.log("Win!");
+    wins ++;
+    reWriteStats();
+  }
+
+  else if (userGuess != computerGuess) {
+        console.log("Wrong try again!")
+        subtract();
+        }
+
+  else {
+    gameOver();
+  }
 
 document.getElementById("wins").innerHTML= wins;
 document.getElementById("losses").innerHTML= losses;
 document.getElementById("guessesLeft").innerHTML= guessesLeft;
-
+document.getElementById("userGuess").innerHTML= userGuess;
 }
+
+         
+       
+   
 </script>
 
 <footer> &copy; Timothy Edmonson 2016 </footer>
