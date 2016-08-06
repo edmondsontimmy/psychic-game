@@ -31,25 +31,26 @@
 
   //Functions
 
-  function subtract(guessesLeft){
+  function subtract(){
 
-      this.guessesLeft = this.guessesLeft - 1;
+      guessesLeft --;
       
-      console.log(this.guessesLeft);
-
+      console.log(guessesLeft);
   }
+
   
   function reWriteStats(){
       guessesLeft = 10;
   }
 
   function gameOver(){
-    while (guessesLeft = 0){
         alert("Game Over!")
         losses ++;
         reWriteStats();
-        }
-  }
+    }
+
+
+
 
   //Game event
 
@@ -78,14 +79,15 @@
     reWriteStats();
   }
 
-  else if (userGuess != computerGuess) {
-        console.log("Wrong try again!")
-        subtract();
-        }
+  if(userGuess != computerGuess){
+    console.log("Wrong try again!")
+    subtract();
+  }
 
-  else {
+  else if (guessesLeft === 0){
     gameOver();
   }
+
 
 document.getElementById("wins").innerHTML= wins;
 document.getElementById("losses").innerHTML= losses;
