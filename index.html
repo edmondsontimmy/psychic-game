@@ -28,19 +28,29 @@
   var losses = 0;
   var guessesLeft = 10;
   var lettersGuessed = userGuess;
+  var computerGuess = options[Math.floor(Math.random()*options.length)];
+  console.log("Computer Guessed: " + computerGuess);
 
   //Functions
 
   function subtract(){
+    if (guessesLeft >= 1) {
 
       guessesLeft --;
       
       console.log(guessesLeft);
+    }
+    else {
+      gameOver();
+      return;
+    }
   }
 
   
   function reWriteStats(){
       guessesLeft = 10;
+      computerGuess = options[Math.floor(Math.random()*options.length)];
+      console.log("Computer Guessed: " + computerGuess);
   }
 
   function gameOver(){
@@ -54,6 +64,7 @@
 
   //Game event
 
+
 	document.onkeyup = function(event) {
 
   
@@ -62,13 +73,7 @@
   console.log(userGuess);
 
   
-  var computerGuess = options[Math.floor(Math.random()*options.length)];
-
   
-  console.log(computerGuess);
-
-  
-  console.log("The Computer Guessed: " + computerGuess);
 
 
 
@@ -79,13 +84,9 @@
     reWriteStats();
   }
 
-  if(userGuess != computerGuess){
-    console.log("Wrong try again!")
+  else {
+    console.log("Wrong try again!");
     subtract();
-  }
-
-  else if (guessesLeft === 0){
-    gameOver();
   }
 
 
