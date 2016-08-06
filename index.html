@@ -10,7 +10,7 @@
 <body>
 <header>The Psychic Game</header>
 
-<img src="https://cdn.powerofpositivity.com/wp-content/uploads/2015/05/psychic-ability.jpg">
+<img src="assets/images/psychic.jpg">
 
 <div id="game">
 <p>Guess What Letter I'm Thinking Of!</p>
@@ -27,18 +27,16 @@
   var wins = 0;
   var losses = 0;
   var guessesLeft = 10;
-  var lettersGuessed = userGuess;
+  var userGuess = "";
   var computerGuess = options[Math.floor(Math.random()*options.length)];
   console.log("Computer Guessed: " + computerGuess);
 
   //Functions
 
   function subtract(){
-    if (guessesLeft >= 1) {
+    if (guessesLeft > 1) {
 
       guessesLeft --;
-      
-      console.log(guessesLeft);
     }
     else {
       gameOver();
@@ -49,12 +47,13 @@
   
   function reWriteStats(){
       guessesLeft = 10;
+      userGuess = "";
       computerGuess = options[Math.floor(Math.random()*options.length)];
       console.log("Computer Guessed: " + computerGuess);
   }
 
   function gameOver(){
-        alert("Game Over!")
+        alert("Game Over! Try Again!")
         losses ++;
         reWriteStats();
     }
@@ -70,16 +69,9 @@
   
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-  console.log(userGuess);
-
   
-  
-
-
-
-  //Console Log of guesses made
   if (userGuess == computerGuess) {
-    console.log("Win!");
+    alert("You Win!");
     wins ++;
     reWriteStats();
   }
@@ -93,7 +85,7 @@
 document.getElementById("wins").innerHTML= wins;
 document.getElementById("losses").innerHTML= losses;
 document.getElementById("guessesLeft").innerHTML= guessesLeft;
-document.getElementById("userGuess").innerHTML= userGuess;
+document.getElementById("userGuess").innerHTML+= userGuess + ", ";
 }
 
          
